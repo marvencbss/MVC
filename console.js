@@ -1,3 +1,3 @@
 const rl = require('readline-sync');
-const nome = rl.question('qual seu nome?')
-console.log(`oi,oi,oi ${nome}`);
+const nome = rl.question('Qual seu nome? ')
+console.log(`Bem vindo ${nome}.`);
