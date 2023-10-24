@@ -1,17 +1,22 @@
 class Discovoador {
-    Vacas
-    Velocidade
+    vacas
+    velocidade
 
-    acelerar() {
-        
+    constructor() {
+        this.vacas = [];
+        this.velocidade = 0 ;
     }
 
-    frear() {
+        acelerar() {
+            for(this.velocidade=0; this.velocidade<10; this.velocidade++);
+            console.log(`velocidade = ${this.velocidade}`);
+        }
 
-    }
+        frear() {
+            this.velocidade = 0;
+        }
 
-    abduzir(Vacas) {
-        Discovoador.push(Vacas)
-    }
-
+        abduzir(vaca) {
+            this.vacas.push(vaca);
+        }
 }
