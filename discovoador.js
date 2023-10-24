@@ -13,7 +13,6 @@ class Discovoador {
     acelerar() {
         const velocidadeAleatoria =  Number.parseInt(Math.random() * 10);
         this.velocidade += velocidadeAleatoria;
-
         if(this.velocidade>10) {
             const umaVaca = new Vaca();
             this.abduzir(umaVaca);
@@ -56,8 +55,17 @@ while(comando!='s') {
     }
 }
 
+
+
+
+
+
+
+
+
 /**
  acelerar(umaVelocidade) {
+
        
         for(this.velocidade = 0; this.velocidade<umaVelocidade; this.velocidade++) {
             console.log(`velocidade = ${this.velocidade}`);
@@ -66,5 +74,9 @@ while(comando!='s') {
                 break;
             }
         }
+        
+        
+    
+
     }
  */
