@@ -10,38 +10,58 @@ class Contato {
     }
 }
 
-
 class Model {
     contatos
+
     constructor() {
-        this.contatos = [
-            new Contato('João','jjguanabara@itambe.net'),
-            new Contato('José', 'almeidagze@silva78.com.br')
-        ];
+        this.contatos = ['Priscila', 'Aline', 'Manuela', 'Edegar', 'Mauricio', 'Antonio'];       ;
     }
 
     getContatos() {
         return this.contatos;
     }
+
+    cadastrar(nome) {
+        this.contatos.push(nome)
+    }
 }
 
 class View {
 
-    receberComando() {
-        return rl.question('Comando: ');
-    }
+    mostrarOpcoes() {
+        console.log(
+`
 
-    mostrarMenu() {
-        console.log(`
 MENU
 ----
-(L)istar contatos
+(L)istar
+(C)adastrar
+(M)odificar
+(E)xcluir
 (S)air
-`);
+`
+);
+    }
+
+    receberComando() {
+        return rl.question("Comando: ").toUpperCase();
+    }
+
+    pedirNome() {
+        const nome = rl.question('Nome: ');
+        return nome;
     }
 
     mostrarContatos(contatos) {
         console.table(contatos);
+    }
+
+    sucesso() {
+        console.log('Ok');
+    }
+
+    aguardarConfirmacaoDoUsuario() {
+        rl.question('Pressione ENTER pra continuar...')
     }
 }
 
@@ -56,40 +76,68 @@ class Controller {
         this.comando = '';
     }
 
+    listar() {
+        view.mostrarContatos(model.getContatos());
+    }
+
+    cadastrar() {
+        const nome = view.pedirNome();
+        model.cadastrar(nome);
+        view.sucesso();
+        //view.aguardarConfirmacaoDoUsuario();
+    }
+
+    modificar() {
+        const novoNome = splice(receberComando().value,);
+    }
+
+    excluir() {
+
+    }
+
+    sair() {
+        process.exit();
+    }
+
     interpretarComando(comando) {
         this.comando = comando;
         switch (this.comando) {
-            case 'l':
-                this.listarContatos();
-                break;       
+            case 'L':
+                this.listar();
+                break;
+            case 'C':
+                this.cadastrar();
+                break;
+            case 'M':
+                this.modificar();
+                break;
+            case 'E':
+                this.excluir();
+                break;
+            case 'S':
+                this.sair();
+                break;
             default:
                 break;
         }
-        this.comando = '';
-    }
 
-    listarContatos() {
-        view.mostrarContatos(model.getContatos());
     }
 }
 
-/*
-Inicialização
-*/
 const model = new Model();
 const view = new View();
 const controller = new Controller(model, view);
+
 
 /**
  * Loop do sistema
  */
 function main() {
     while(controller.comando!='s') {
-        view.mostrarMenu();
+        view.mostrarOpcoes();
         comando = view.receberComando();
         controller.interpretarComando(comando);
     }
-    console.log('Fim do programa');
 }
 
 // 
